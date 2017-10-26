@@ -1,0 +1,59 @@
+1、在一个html的应用中只存在一个ng-app。可以同时拥有多个ng-controller。比如:
+	<div ng-app="myApp" >
+		<div ng-controller="myCtrl01">
+			<span ng-bind="name"></span>
+		</div>
+		<div ng-controller="myCtrl02">
+			{{name}}
+		</div>
+	</div>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl01",function($scope){
+			$scope.name = "huxinxing";
+		});
+		app.controller("myCtrl02",function($scope){
+			$scope.name = "hupiao";
+		})
+	</script>
+
+2、在angularJS中ng-model、ng-controller、$scope就可以想象成mvc结构。
+	其中$scope担当着model的角色。可以是变量也可以是对象：ng-init表示初始化变量值。
+	$scope.name = "huxinxig";
+	$scope.person={firstName:'John',lastName:'Doe'}
+	$scope.array = [1,15,19,2,40];
+
+3、angularJS的逻辑代码全部编写在app.controller("controllerName",function($scope){
+})中
+
+
+4、ng-model表示将html绑定到argulerJS的变量中，而ng-bind和{{}}表示将argulerJS中的变量绑定到html中。从而可以实现argularJS的数据绑定。
+
+
+5、argularJS中的控制器，包含argularJS控制器、argularJS控制器方法、外部文件中的控制器：具体实现请浏览http://www.runoob.com/angularjs/angularjs-controllers.html
+
+
+6、创建自定义服务。所谓服务就是平常在编程中的方法，在argularJS中称为服务。http://www.runoob.com/angularjs/angularjs-services.html
+	app.service("服务名称",function(){
+		服务实现的具体逻辑
+	})
+	例如：
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<p>255的16进制</p>
+		<h1>{{hex}}</h1>
+	</div>
+	<script>
+		var app = argular.module("myApp",[]);
+		app.service("hexafy",function(){
+			this.myFunc = function(){
+				return x.toString(16)
+			}		
+		})
+		app.controller("myCtrl",function($scope,hexafy){
+			$scope.hex = hexafy.myFunc(225);
+		});
+	</script>
+
+	
+
+	argularJS重要的服务有：$http,$localtion
